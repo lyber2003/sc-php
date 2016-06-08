@@ -2,6 +2,23 @@ FROM phusion/baseimage
 
 CMD ["/sbin/my_init"]
 
+
+RUN locale-gen uk_UA
+RUN locale-gen uk_UA.UTF-8
+RUN locale-gen en_US
+RUN locale-gen en_US.UTF-8
+RUN locale-gen ru_RU
+RUN locale-gen ru_RU.UTF-8
+
+
+
+
+RUN export LANGUAGE="en_US.UTF-"
+RUN export LANG="en_US.UTF-8"
+RUN export LC_ALL="en_US.UTF-8"
+
+RUN dpkg-reconfigure locales
+
 RUN apt-add-repository ppa:phalcon/stable \
     && apt-get update \
     && apt-get install -y php5-redis php5-phalcon php5-pgsql php5-common php5-cli php5-dev php5-fpm php5-mcrypt php5-mysql php5-gd php5-curl php5-memcache php5-xdebug php5-geoip
